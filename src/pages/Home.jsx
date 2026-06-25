@@ -1,0 +1,100 @@
+import { useState, useEffect } from 'react'
+import { useCart } from '../context/CartContext'
+import ProductCard from '../components/ProductCard'
+import Navbar from '../components/Navbar'
+
+function Home() {
+  const [products, setProducts] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const [newName, setNewName] = useState("")
+  const [newPrice, setNewPrice] = useState("")
+  const [newImage, setNewImage] = useState("")
+  const { cartItems, addToCart } = useCart()
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data)
+      })
+  }, [])
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchText.toLowerCase())
+  )
+
+  function handleAddToCart(product) {
+    addToCart(product)
+  }
+
+  function handleAddProduct() {
+    fetch("http://localhost:5000/api/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: newName, price: newPrice, image: newImage })
+    })
+      .then((response) => response.json())
+      .then((createdProduct) => {
+        setProducts([...products, createdProduct])
+        setNewName("")
+        setNewPrice("")
+        setNewImage("")
+      })
+  }
+
+  function handleDeleteProduct(id) {
+    fetch(`http://localhost:5000/api/products/${id}`, {
+      method: "DELETE"
+    })
+      .then(() => {
+        setProducts(products.filter((product) => product._id !== id))
+      })
+  }
+
+  return (
+    <div>
+      <Navbar
+        cartCount={cartItems.length}
+        searchText={searchText}
+        onSearchChange={setSearchText}
+      />
+
+      <div className="add-product-form">
+        <input
+          type="text"
+          placeholder="Product name"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Price"
+          value={newPrice}
+          onChange={(e) => setNewPrice(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={newImage}
+          onChange={(e) => setNewImage(e.target.value)}
+        />
+        <button onClick={handleAddProduct}>Add Product</button>
+      </div>
+
+      <div className="products-grid">
+        {filteredProducts.map((product) => (
+          <ProductCard
+            key={product._id}
+            name={product.name}
+            price={product.price}
+            image={product.image}
+            onAddToCart={() => handleAddToCart(product)}
+            onDelete={() => handleDeleteProduct(product._id)}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default Home

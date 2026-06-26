@@ -3,7 +3,7 @@
 A full stack e-commerce web application built with React.
 
 ## Live Demo
-[View Live Site](https://ecommerce-app.vercel.app)
+[View Live Site](https://ecommerce-app-five-navy.vercel.app/)
 
 ## Features
 - Browse products with search/filter

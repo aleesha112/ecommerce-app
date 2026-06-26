@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Cart() {
   const { cartItems, removeFromCart } = useCart()
   const [discountCode, setDiscountCode] = useState("")
-  const [discountApplied, setDiscountApplied] = useState(false)
+  const { cartItems, removeFromCart, discountApplied, setDiscountApplied } = useCart()
   const [discountMessage, setDiscountMessage] = useState("")
 
   const totalPrice = cartItems.reduce((sum, item) => sum + Number(item.price), 0)

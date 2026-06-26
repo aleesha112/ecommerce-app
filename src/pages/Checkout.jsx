@@ -3,7 +3,7 @@ import { useCart } from '../context/CartContext'
 import { useNavigate } from 'react-router-dom'
 
 function Checkout() {
-  const { cartItems } = useCart()
+  const { cartItems, discountApplied } = useCart()
   const navigate = useNavigate()
 
   const [fullName, setFullName] = useState("")
@@ -14,10 +14,13 @@ function Checkout() {
   const [phone, setPhone] = useState("")
 
   const totalPrice = cartItems.reduce((sum, item) => sum + Number(item.price), 0)
+  const shippingFee = cartItems.length > 0 ? 10 : 0
+  const discountAmount = discountApplied ? totalPrice * 0.1 : 0
+  const grandTotal = totalPrice + shippingFee - discountAmount
 
   function handlePlaceOrder(e) {
     e.preventDefault()
-    alert(`Order placed successfully for ${fullName}! Total: $${totalPrice}`)
+    alert(`Order placed successfully for ${fullName}! Total: $${grandTotal.toFixed(2)}`)
     navigate("/")
   }
 
@@ -83,9 +86,19 @@ function Checkout() {
               <span>${item.price}</span>
             </div>
           ))}
+          <div className="checkout-item">
+            <span>Shipping Fee</span>
+            <span>${shippingFee}</span>
+          </div>
+          {discountApplied && (
+            <div className="checkout-item">
+              <span>Discount (10%)</span>
+              <span>-${discountAmount.toFixed(2)}</span>
+            </div>
+          )}
           <div className="checkout-total">
             <span>Total</span>
-            <span>${totalPrice}</span>
+            <span>${grandTotal.toFixed(2)}</span>
           </div>
         </div>
       </div>

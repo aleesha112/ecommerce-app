@@ -12,7 +12,7 @@ function Home() {
   const { cartItems, addToCart } = useCart()
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products")
       .then((response) => response.json())
       .then((data) => {
         setProducts(data)
@@ -28,7 +28,7 @@ function Home() {
   }
 
   function handleAddProduct() {
-    fetch("http://localhost:5000/api/products", {
+    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: newName, price: newPrice, image: newImage })
@@ -43,7 +43,7 @@ function Home() {
   }
 
   function handleDeleteProduct(id) {
-    fetch(`http://localhost:5000/api/products/${id}`, {
+    fetch(`https://ecommerce-backend-production-a8b5.up.railway.app/api/products/${id}`, {
       method: "DELETE"
     })
       .then(() => {

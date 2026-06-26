@@ -3,9 +3,8 @@ import { useCart } from '../context/CartContext'
 import { Link } from 'react-router-dom'
 
 function Cart() {
-  const { cartItems, removeFromCart } = useCart()
-  const [discountCode, setDiscountCode] = useState("")
   const { cartItems, removeFromCart, discountApplied, setDiscountApplied } = useCart()
+  const [discountCode, setDiscountCode] = useState("")
   const [discountMessage, setDiscountMessage] = useState("")
 
   const totalPrice = cartItems.reduce((sum, item) => sum + Number(item.price), 0)

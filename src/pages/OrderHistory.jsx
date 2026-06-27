@@ -21,7 +21,7 @@ function OrderHistory() {
         </div>
       ) : (
         orders.map((order) => (
-          <div key={order._id} className="order-card">
+          <div className="order-card" key={order._id}>
             <div className="order-header">
               <span>{order.fullName}</span>
               <span>{new Date(order.date).toLocaleDateString()}</span>
@@ -35,6 +35,20 @@ function OrderHistory() {
                 </div>
               ))}
             </div>
+            <div className="order-item">
+              <span>Subtotal</span>
+              <span>${order.subtotal}</span>
+            </div>
+            <div className="order-item">
+              <span>Shipping</span>
+              <span>${order.shipping}</span>
+            </div>
+            {Number(order.discount) > 0 && (
+              <div className="order-item">
+                <span>Discount</span>
+                <span>-${order.discount}</span>
+              </div>
+            )}
             <div className="order-total">
               <span>Total</span>
               <span>${order.total}</span>

@@ -1,3 +1,5 @@
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
+
 function ProductCard(props) {
   function renderStars(rating) {
     const stars = []
@@ -11,6 +13,10 @@ function ProductCard(props) {
 
   return (
     <div className="card">
+      
+      <button className="wishlist-btn" onClick={props.onToggleWishlist}>
+      {props.isWishlisted ? "❤️" : "🤍"}
+      </button>
       <img src={props.image} alt={props.name} className="product-img" />
       <h3>{props.name}</h3>
       <div className="rating">{renderStars(props.rating)}</div>

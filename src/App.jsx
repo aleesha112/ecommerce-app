@@ -3,6 +3,7 @@ import { CartProvider } from './context/CartContext'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
+import Wishlist from './pages/Wishlist'
 import ChatWidget from './components/ChatWidget'
 import './App.css'
 
@@ -13,6 +14,8 @@ function App() {
         <nav>
           <Link to="/">Home</Link>
           {" | "}
+          <Link to="/wishlist">Wishlist</Link>
+          {" | "}
           <Link to="/cart">Cart</Link>
         </nav>
 
@@ -20,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Routes>
 
         <ChatWidget />

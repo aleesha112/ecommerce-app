@@ -9,7 +9,7 @@ function Home() {
   const [newName, setNewName] = useState("")
   const [newPrice, setNewPrice] = useState("")
   const [newImage, setNewImage] = useState("")
-  const { cartItems, addToCart } = useCart()
+  const { cartItems, addToCart, wishlist, toggleWishlist } = useCart()
 
   useEffect(() => {
     fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products")
@@ -91,6 +91,8 @@ function Home() {
             rating={product.rating}
             onAddToCart={() => handleAddToCart(product)}
             onDelete={() => handleDeleteProduct(product._id)}
+            onToggleWishlist={() => toggleWishlist(product)}
+            isWishlisted={wishlist.some((item) => item._id === product._id)}
           />
         ))}
       </div>

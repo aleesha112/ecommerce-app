@@ -666,6 +666,14 @@ nav a:hover {
 .card {
   position: relative;
 }
+.wishlist-page {
+  padding: 30px 40px;
+}
+
+.wishlist-page h1 {
+  color: #1a1a2e;
+  margin-bottom: 20px;
+}
 
 .wishlist-btn {
   position: absolute;
@@ -688,4 +696,57 @@ nav a:hover {
 }
 .wishlist-btn:hover {
   transform: scale(1.15);
+}
+.order-history-page {
+  padding: 30px 40px;
+}
+
+.order-history-page h1 {
+  color: #1a1a2e;
+  margin-bottom: 20px;
+}
+
+.order-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.order-address {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.order-items {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid #eee;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-weight: bold;
+  color: #1a1a2e;
 }

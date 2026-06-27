@@ -1,26 +1,34 @@
 import { useCart } from '../context/CartContext'
 import ProductCard from '../components/ProductCard'
+import { Link } from 'react-router-dom'
 
 function Wishlist() {
   const { wishlist, toggleWishlist, addToCart } = useCart()
 
   return (
-    <div className="products-grid" style={{ padding: "30px 40px" }}>
+    <div className="wishlist-page">
+      <h1>My Wishlist</h1>
+
       {wishlist.length === 0 ? (
-        <p>Your wishlist is empty</p>
+        <div className="empty-cart">
+          <p>Your wishlist is empty</p>
+          <Link to="/" className="continue-shopping">Continue Shopping</Link>
+        </div>
       ) : (
-        wishlist.map((product) => (
-          <ProductCard
-            key={product._id}
-            name={product.name}
-            price={product.price}
-            image={product.image}
-            rating={product.rating}
-            onAddToCart={() => addToCart(product)}
-            onToggleWishlist={() => toggleWishlist(product)}
-            isWishlisted={true}
-          />
-        ))
+        <div className="products-grid">
+          {wishlist.map((product) => (
+            <ProductCard
+              key={product._id}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              rating={product.rating}
+              onAddToCart={() => addToCart(product)}
+              onToggleWishlist={() => toggleWishlist(product)}
+              isWishlisted={true}
+            />
+          ))}
+        </div>
       )}
     </div>
   )

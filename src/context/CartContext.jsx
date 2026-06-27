@@ -2,6 +2,7 @@ import { createContext, useState, useContext } from 'react'
 
 const CartContext = createContext()
 
+
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([])
   const [discountApplied, setDiscountApplied] = useState(false)
@@ -25,7 +26,7 @@ export function CartProvider({ children }) {
   }
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, discountApplied, setDiscountApplied, wishlist, toggleWishlist }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, discountApplied, setDiscountApplied, wishlist, toggleWishlist, setCartItems }}>
       {children}
     </CartContext.Provider>
   )

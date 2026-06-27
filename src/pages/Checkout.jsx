@@ -19,33 +19,37 @@ function Checkout() {
   const grandTotal = totalPrice + shippingFee - discountAmount
 
   function handlePlaceOrder(e) {
-    e.preventDefault()
+  e.preventDefault()
+  console.log("DEBUG - discountAmount:", discountAmount, "subtotal:", totalPrice)
 
-    const orderData = {
-      fullName,
-      address: `${houseNumber}, ${address}, ${city}`,
-      postalCode,
-      phone,
-      items: cartItems,
-      total: grandTotal.toFixed(2)
-    }
-
-    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(orderData)
-    })
-      .then((response) => response.json())
-      .then(() => {
-        alert(`Order placed successfully for ${fullName}! Total: $${grandTotal.toFixed(2)}`)
-        setCartItems([])
-        navigate("/")
-      })
+  const orderData = {
+    fullName,
+    address: `${houseNumber}, ${address}, ${city}`,
+    postalCode,
+    phone,
+    items: cartItems,
+    subtotal: totalPrice.toFixed(2),
+    discount: discountAmount.toFixed(2),
+    shipping: shippingFee,
+    total: grandTotal.toFixed(2)
   }
 
-  return (
+  fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/orders", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(orderData)
+  })
+    .then((response) => response.json())
+    .then(() => {
+      alert(`Order placed successfully for ${fullName}! Total: $${grandTotal.toFixed(2)}`)
+      setCartItems([])
+      navigate("/")
+    })
+}
+  
+    return (
     <div className="checkout-page">
-      <h1>Checkout</h1>
+      <h1>Checkout TEST123</h1>
 
       <div className="checkout-layout">
         <form className="checkout-form" onSubmit={handlePlaceOrder}>

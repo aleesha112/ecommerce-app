@@ -88,6 +88,7 @@ function Home() {
             name={product.name}
             price={product.price}
             image={product.image}
+            rating={product.rating}
             onAddToCart={() => handleAddToCart(product)}
             onDelete={() => handleDeleteProduct(product._id)}
           />

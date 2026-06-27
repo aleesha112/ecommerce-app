@@ -3,7 +3,8 @@ import { CartProvider } from './context/CartContext'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
-import './App.css'    
+import ChatWidget from './components/ChatWidget'
+import './App.css'
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
+
+        <ChatWidget />
       </div>
     </CartProvider>
   )

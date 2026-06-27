@@ -10,14 +10,16 @@ function Home() {
   const [newPrice, setNewPrice] = useState("")
   const [newImage, setNewImage] = useState("")
   const { cartItems, addToCart, wishlist, toggleWishlist } = useCart()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data)
-      })
-  }, [])
+  fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products")
+    .then((response) => response.json())
+    .then((data) => {
+      setProducts(data)
+      setLoading(false)
+    })
+}, [])
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchText.toLowerCase())
@@ -82,20 +84,29 @@ function Home() {
       </div>
 
       <div className="products-grid">
-        {filteredProducts.map((product) => (
-          <ProductCard
-            key={product._id}
-            name={product.name}
-            price={product.price}
-            image={product.image}
-            rating={product.rating}
-            onAddToCart={() => handleAddToCart(product)}
-            onDelete={() => handleDeleteProduct(product._id)}
-            onToggleWishlist={() => toggleWishlist(product)}
-            isWishlisted={wishlist.some((item) => item._id === product._id)}
-          />
-        ))}
+  {loading ? (
+    Array.from({ length: 8 }).map((_, index) => (
+      <div key={index} className="skeleton-card">
+        <div className="skeleton-img"></div>
+        <div className="skeleton-text"></div>
+        <div className="skeleton-text short"></div>
       </div>
+    ))
+  ) : (
+    filteredProducts.map((product) => (
+      <ProductCard
+        key={product._id}
+        name={product.name}
+        price={product.price}
+        image={product.image}
+        rating={product.rating}
+        onAddToCart={() => handleAddToCart(product)}
+        onToggleWishlist={() => toggleWishlist(product)}
+        isWishlisted={wishlist.some((item) => item._id === product._id)}
+      />
+    ))
+  )}
+</div>
     </div>
   )
 }

@@ -500,9 +500,11 @@ nav a:hover {
   }
 
   .products-grid {
-    padding: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
+  display: grid;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  justify-items: stretch;
+}
 
   .cart-layout,
   .checkout-layout {

@@ -28,9 +28,11 @@ function Cart() {
 
       {cartItems.length === 0 ? (
         <div className="empty-cart">
-          <p>Your cart is empty</p>
-          <Link to="/" className="continue-shopping">Continue Shopping</Link>
-        </div>
+  <div className="empty-cart-icon">🛒</div>
+  <h2>Your cart feels a little lonely</h2>
+  <p>Looks like you haven't added anything yet. Let's fix that!</p>
+  <Link to="/" className="continue-shopping">Start Shopping</Link>
+</div>
       ) : (
         <div className="cart-layout">
           <div className="cart-items">

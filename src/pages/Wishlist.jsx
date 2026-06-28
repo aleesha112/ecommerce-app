@@ -11,9 +11,11 @@ function Wishlist() {
 
       {wishlist.length === 0 ? (
         <div className="empty-cart">
-          <p>Your wishlist is empty</p>
-          <Link to="/" className="continue-shopping">Continue Shopping</Link>
-        </div>
+  <div className="empty-cart-icon">💔</div>
+  <h2>No favorites yet</h2>
+  <p>Tap the heart on any product to save it here for later.</p>
+  <Link to="/" className="continue-shopping">Browse Products</Link>
+</div>
       ) : (
         <div className="products-grid">
           {wishlist.map((product) => (

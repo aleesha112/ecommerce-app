@@ -849,3 +849,128 @@ nav a:hover {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 4px 10px;
+}
+
+nav {
+  align-items: center;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  min-height: 100vh;
+}
+
+.dark-mode .navbar,
+.dark-mode .card,
+.dark-mode .cart-item,
+.dark-mode .cart-summary,
+.dark-mode .checkout-form,
+.dark-mode .checkout-summary,
+.dark-mode .order-card,
+.dark-mode .chat-box,
+.dark-mode .add-product-form,
+.dark-mode .empty-cart {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+.dark-mode .navbar h1,
+.dark-mode .card h3,
+.dark-mode .cart-item-info h3,
+.dark-mode .checkout-form h2,
+.dark-mode .checkout-summary h2,
+.dark-mode .order-header,
+.dark-mode .empty-cart h2,
+.dark-mode .product-detail-page h1,
+.dark-mode .checkout-page h1,
+.dark-mode .cart-page h1,
+.dark-mode .wishlist-page h1,
+.dark-mode .order-history-page h1 {
+  color: #f0f0f0;
+}
+
+.dark-mode .navbar input,
+.dark-mode .checkout-form input,
+.dark-mode .checkout-form select,
+.dark-mode .add-product-form input,
+.dark-mode .discount-box input,
+.dark-mode .chat-input-area input {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border-color: #444;
+}
+
+.dark-mode .summary-row,
+.dark-mode .order-item,
+.dark-mode .checkout-item,
+.dark-mode .empty-cart p {
+  color: #ccc;
+}
+
+.dark-mode .order-address {
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    margin-left: 0;
+  }
+}
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-processing {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status-shipped {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-delivered {
+  background-color: #d1f0d1;
+  color: #0f5132;
+}
+
+.dark-mode .status-pending {
+  background-color: #4a3f1a;
+  color: #ffe69c;
+}
+
+.dark-mode .status-processing {
+  background-color: #1a3a52;
+  color: #9ec5fe;
+}
+
+.dark-mode .status-shipped,
+.dark-mode .status-delivered {
+  background-color: #1a3a26;
+  color: #a3d9a5;
+}

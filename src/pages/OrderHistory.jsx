@@ -24,6 +24,9 @@ function OrderHistory() {
           <div className="order-card" key={order._id}>
             <div className="order-header">
               <span>{order.fullName}</span>
+              <span className={`status-badge status-${order.status?.toLowerCase()}`}>
+                {order.status || "Processing"}
+              </span>
               <span>{new Date(order.date).toLocaleDateString()}</span>
             </div>
             <p className="order-address">{order.address}</p>

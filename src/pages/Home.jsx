@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useCart } from '../context/CartContext'
 import ProductCard from '../components/ProductCard'
 import Navbar from '../components/Navbar'
+import toast from 'react-hot-toast'
+
 
 function Home() {
   const [products, setProducts] = useState([])
@@ -11,6 +13,7 @@ function Home() {
   const [newImage, setNewImage] = useState("")
   const { cartItems, addToCart, wishlist, toggleWishlist } = useCart()
   const [loading, setLoading] = useState(true)
+
 
   useEffect(() => {
   fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products")
@@ -26,8 +29,19 @@ function Home() {
   )
 
   function handleAddToCart(product) {
-    addToCart(product)
+  addToCart(product)
+  toast.success(`${product.name} added to cart!`)
+}
+
+  function handleToggleWishlist(product) {
+  toggleWishlist(product)
+  const isAlreadyWishlisted = wishlist.some((item) => item._id === product._id)
+  if (isAlreadyWishlisted) {
+    toast("Removed from wishlist")
+  } else {
+    toast.success("Added to wishlist!")
   }
+}
 
   function handleAddProduct() {
   if (newName.trim() === "" || newPrice.trim() === "") {
@@ -99,15 +113,16 @@ function Home() {
   ) : (
     filteredProducts.map((product) => (
       <ProductCard
-        key={product._id}
-        name={product.name}
-        price={product.price}
-        image={product.image}
-        rating={product.rating}
-        onAddToCart={() => handleAddToCart(product)}
-        onToggleWishlist={() => toggleWishlist(product)}
-        isWishlisted={wishlist.some((item) => item._id === product._id)}
-      />
+  key={product._id}
+  id={product._id}
+  name={product.name}
+  price={product.price}
+  image={product.image}
+  rating={product.rating}
+  onAddToCart={() => handleAddToCart(product)}
+  onToggleWishlist={() => handleToggleWishlist(product)}
+  isWishlisted={wishlist.some((item) => item._id === product._id)}
+/>
     ))
   )}
 </div>

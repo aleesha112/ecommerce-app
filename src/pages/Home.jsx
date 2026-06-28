@@ -30,20 +30,24 @@ function Home() {
   }
 
   function handleAddProduct() {
-    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: newName, price: newPrice, image: newImage })
-    })
-      .then((response) => response.json())
-      .then((createdProduct) => {
-        setProducts([...products, createdProduct])
-        setNewName("")
-        setNewPrice("")
-        setNewImage("")
-      })
+  if (newName.trim() === "" || newPrice.trim() === "") {
+    alert("Please fill in product name and price")
+    return
   }
 
+  fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: newName, price: newPrice, image: newImage })
+  })
+    .then((response) => response.json())
+    .then((createdProduct) => {
+      setProducts([...products, createdProduct])
+      setNewName("")
+      setNewPrice("")
+      setNewImage("")
+    })
+}
   function handleDeleteProduct(id) {
     fetch(`https://ecommerce-backend-production-a8b5.up.railway.app/api/products/${id}`, {
       method: "DELETE"

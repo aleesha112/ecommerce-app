@@ -3,6 +3,7 @@ nav {
   padding: 15px 40px;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 nav a {
@@ -439,6 +440,16 @@ nav a:hover {
   justify-content: center;
 }
 @media (max-width: 768px) {
+  nav {
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 15px;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
+
   .navbar {
     flex-direction: column;
     gap: 10px;

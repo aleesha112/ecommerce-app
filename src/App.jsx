@@ -23,9 +23,10 @@ function AppContent() {
         <Link to="/cart">Cart</Link>
         {" | "}
         <Link to="/orders">Orders</Link>
-        <button className="theme-toggle" onClick={toggleDarkMode}>
-          {darkMode ? "☀️" : "🌙"}
-        </button>
+        <label className="theme-switch">
+          <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+          <span className="slider"></span>
+        </label>
       </nav>
 
       <Routes>

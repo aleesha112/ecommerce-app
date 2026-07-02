@@ -530,6 +530,14 @@ nav a:hover {
   .cart-item-info {
     width: 100%;
   }
+
+  .auth-card {
+    padding: 25px;
+  }
+
+  .auth-card h1 {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -544,6 +552,10 @@ nav a:hover {
 
   .card h3 {
     font-size: 14px;
+  }
+
+  .auth-card {
+    padding: 20px 15px;
   }
 }
 .chat-widget {
@@ -1013,4 +1025,142 @@ nav {
 .dark-mode .status-delivered {
   background-color: #1a3a26;
   color: #a3d9a5;
+}
+.auth-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card h1 {
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.auth-subtitle {
+  color: #888;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-card input {
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.auth-card input:focus {
+  border-color: #f0a500;
+}
+
+.auth-card button {
+  padding: 12px;
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.auth-card button:hover {
+  background-color: #f0a500;
+}
+
+.auth-card button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.auth-switch a {
+  color: #f0a500;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-logout-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+}
+
+.nav-logout-btn:hover {
+  color: #f0a500;
+}
+
+.dark-mode .auth-card {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+.dark-mode .auth-card h1 {
+  color: #f0f0f0;
+}
+
+.dark-mode .auth-card input {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border-color: #444;
+}
+nav span {
+  color: #f0a500;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.dark-mode nav span {
+  color: #f0a500;
+}
+.password-errors {
+  background-color: #fff3f3;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: -8px;
+}
+
+.password-error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin: 2px 0;
+}
+
+.dark-mode .password-errors {
+  background-color: #3a1a1a;
+}
+
+.dark-mode .password-error {
+  color: #ff6b6b;
 }

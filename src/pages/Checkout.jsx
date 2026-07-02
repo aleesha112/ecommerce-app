@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 import { useNavigate } from 'react-router-dom'
 import { Country, City } from 'country-state-city'
+import { useAuth } from '../context/AuthContext'
 
 function Checkout() {
+  const { user, token } = useAuth()
   const { cartItems, discountApplied, setCartItems } = useCart()
   const navigate = useNavigate()
 
@@ -25,20 +27,27 @@ function Checkout() {
   const grandTotal = totalPrice + shippingFee - discountAmount
 
   function handlePlaceOrder(e) {
-    e.preventDefault()
+  e.preventDefault()
 
-    const orderData = {
-      fullName,
-      address: `${houseNumber}, ${address}, ${city}, ${country}`,
-      postalCode,
-      phone: `+${countryCode}${phone}`,
-      items: cartItems,
-      subtotal: totalPrice.toFixed(2),
-      discount: discountAmount.toFixed(2),
-      shipping: shippingFee,
-      total: grandTotal.toFixed(2)
-    }
+  if (!user) {
+    toast.error("Please login to place an order!")
+    navigate("/login")
+    return
+  }
 
+  const orderData = {
+    userId: user.id,
+    fullName,
+    address: `${houseNumber}, ${address}, ${city}, ${country}`,
+    postalCode,
+    phone: `+${countryCode}${phone}`,
+    items: cartItems,
+    subtotal: totalPrice.toFixed(2),
+    discount: discountAmount.toFixed(2),
+    shipping: shippingFee,
+    total: grandTotal.toFixed(2)
+  }
+  
     fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react'
+import { useAuth } from '../context/AuthContext'
+import { Link } from 'react-router-dom'
 
 function OrderHistory() {
   const [orders, setOrders] = useState([])
+  const { token } = useAuth()
 
   useEffect(() => {
-    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/orders")
+    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/orders", {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then((response) => response.json())
-      .then((data) => {
-        setOrders(data)
-      })
+      .then((data) => setOrders(data))
   }, [])
 
   return (
@@ -17,7 +22,10 @@ function OrderHistory() {
 
       {orders.length === 0 ? (
         <div className="empty-cart">
-          <p>No orders yet</p>
+          <div className="empty-cart-icon">📦</div>
+          <h2>No orders yet</h2>
+          <p>Once you place an order, it will show up here.</p>
+          <Link to="/" className="continue-shopping">Start Shopping</Link>
         </div>
       ) : (
         orders.map((order) => (

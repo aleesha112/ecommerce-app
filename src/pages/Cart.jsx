@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 function Cart() {
+  const { user } = useAuth()
+  const navigate = useNavigate()
   const { cartItems, removeFromCart, discountApplied, setDiscountApplied } = useCart()
   const [discountCode, setDiscountCode] = useState("")
   const [discountMessage, setDiscountMessage] = useState("")
@@ -80,7 +85,14 @@ function Cart() {
               <span>Total</span>
               <span>${grandTotal.toFixed(2)}</span>
             </div>
-            <Link to="/checkout" className="checkout-btn">Proceed to Checkout</Link>
+            <button className="checkout-btn" onClick={() => {
+  if (!user) {
+    toast.error("Please login to place an order!")
+    navigate("/login")
+  } else {
+    navigate("/checkout")
+  }
+}}>Proceed to Checkout</button>
           </div>
         </div>
       )}

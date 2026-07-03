@@ -11,42 +11,46 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import ChatWidget from './components/ChatWidget'
 import './App.css'
+import { useState } from 'react'
 
 function AppContent() {
   const { darkMode, toggleDarkMode } = useCart()
   const { user, logout } = useAuth()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <div className={darkMode ? "dark-mode" : ""}>
       <Toaster position="top-right" />
       <nav>
-        <Link to="/">Home</Link>
-        {" | "}
-        <Link to="/wishlist">Wishlist</Link>
-        {" | "}
-        <Link to="/cart">Cart</Link>
-        {" | "}
-        <Link to="/orders">Orders</Link>
-        {" | "}
-        {user ? (
-          <>
-            <span>Hi, {user.name}</span>
-            {" | "}
-            <button onClick={logout} className="nav-logout-btn">Logout</button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">Login</Link>
-            {" | "}
-            <Link to="/signup">Signup</Link>
-          </>
-        )}
-        <label className="theme-switch">
-          <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
-          <span className="slider"></span>
-        </label>
-      </nav>
+        <div className="nav-brand">MyStore</div>
+        
+        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          ☰
+        </button>
 
+        <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/wishlist" onClick={() => setMenuOpen(false)}>Wishlist</Link>
+          <Link to="/cart" onClick={() => setMenuOpen(false)}>Cart</Link>
+          <Link to="/orders" onClick={() => setMenuOpen(false)}>Orders</Link>
+          {user ? (
+            <>
+              <span>Hi, {user.name}</span>
+              <button onClick={() => { logout(); setMenuOpen(false) }} className="nav-logout-btn">Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+              <Link to="/signup" onClick={() => setMenuOpen(false)}>Signup</Link>
+            </>
+          )}
+          <label className="theme-switch">
+            <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+            <span className="slider"></span>
+          </label>
+        </div>
+      </nav>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />

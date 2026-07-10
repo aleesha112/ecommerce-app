@@ -3,9 +3,12 @@ import { useCart } from '../context/CartContext'
 import ProductCard from '../components/ProductCard'
 import Navbar from '../components/Navbar'
 import toast from 'react-hot-toast'
+import Carousel from '../components/Carousel'
+import { useAuth } from '../context/AuthContext'
 
 
 function Home() {
+  const { user } = useAuth()
   const [products, setProducts] = useState([])
   const [searchText, setSearchText] = useState("")
   const [newName, setNewName] = useState("")
@@ -16,7 +19,7 @@ function Home() {
 
 
   useEffect(() => {
-  fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products")
+  fetch("https://ecommerce-backend-production-5790.up.railway.app/api/products")
     .then((response) => response.json())
     .then((data) => {
       setProducts(data)
@@ -49,7 +52,7 @@ function Home() {
     return
   }
 
-  fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/products", {
+  fetch("https://ecommerce-backend-production-5790.up.railway.app/api/products", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name: newName, price: newPrice, image: newImage })
@@ -63,7 +66,7 @@ function Home() {
     })
 }
   function handleDeleteProduct(id) {
-    fetch(`https://ecommerce-backend-production-a8b5.up.railway.app/api/products/${id}`, {
+    fetch(`https://ecommerce-backend-production-5790.up.railway.app/api/products/${id}`, {
       method: "DELETE"
     })
       .then(() => {
@@ -79,27 +82,31 @@ function Home() {
         onSearchChange={setSearchText}
       />
 
-      <div className="add-product-form">
-        <input
-          type="text"
-          placeholder="Product name"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Price"
-          value={newPrice}
-          onChange={(e) => setNewPrice(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={newImage}
-          onChange={(e) => setNewImage(e.target.value)}
-        />
-        <button onClick={handleAddProduct}>Add Product</button>
-      </div>
+{!searchText && <Carousel products={products} />}
+
+{user && user.role === 'admin' && !searchText && (
+  <div className="add-product-form">
+    <input
+      type="text"
+      placeholder="Product name"
+      value={newName}
+      onChange={(e) => setNewName(e.target.value)}
+    />
+    <input
+      type="text"
+      placeholder="Price"
+      value={newPrice}
+      onChange={(e) => setNewPrice(e.target.value)}
+    />
+    <input
+      type="text"
+      placeholder="Image URL"
+      value={newImage}
+      onChange={(e) => setNewImage(e.target.value)}
+    />
+    <button onClick={handleAddProduct}>Add Product</button>
+  </div>
+)}
 
       <div className="products-grid">
   {loading ? (

@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault()
     setLoading(true)
 
-    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/auth/login", {
+    fetch("https://ecommerce-backend-production-5790.up.railway.app/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
@@ -61,6 +61,9 @@ function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
+        <p className="auth-switch">
+  <Link to="/forgot-password">Forgot Password?</Link>
+</p>
 
         <p className="auth-switch">
           Don't have an account? <Link to="/signup">Sign up</Link>

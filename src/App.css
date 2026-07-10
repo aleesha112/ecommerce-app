@@ -503,12 +503,26 @@ nav {
 }
 @media (max-width: 768px) {
   nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     padding: 12px 20px;
   }
 
+  .nav-brand {
+    flex: 1;
+  }
+
+  .mobile-username {
+    display: block;
+    flex: 2;
+    text-align: center;
+  }
+
   .hamburger {
     display: block;
+    margin-left: auto;
   }
 
   .nav-links {
@@ -1221,4 +1235,113 @@ nav span {
 
 .dark-mode .password-error {
   color: #ff6b6b;
+}
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
+}
+
+.carousel-slide {
+  display: flex;
+  align-items: center;
+  height: 380px;
+  padding: 0 60px;
+  gap: 40px;
+}
+
+.carousel-image-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-img {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.carousel-content {
+  flex: 1;
+  color: white;
+}
+
+.carousel-tag {
+  background: #f0a500;
+  color: #1a1a2e;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.carousel-content h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 15px 0 10px;
+  color: white;
+}
+
+.carousel-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f0a500;
+  margin-bottom: 12px;
+}
+
+.carousel-desc {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Swiper custom */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #f0a500 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #f0a500 !important;
+}
+
+@media (max-width: 768px) {
+  .carousel-slide {
+    flex-direction: column;
+    height: auto;
+    padding: 30px 20px;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .carousel-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .carousel-content h2 {
+    font-size: 22px;
+  }
+
+  .carousel-price {
+    font-size: 20px;
+  }
+}
+.mobile-username {
+  display: none;
+  color: #f0a500;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .mobile-username {
+    display: block;
+  }
 }

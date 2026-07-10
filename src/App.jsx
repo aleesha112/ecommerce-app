@@ -12,6 +12,7 @@ import Signup from './pages/Signup'
 import ChatWidget from './components/ChatWidget'
 import './App.css'
 import { useState } from 'react'
+import ForgotPassword from './pages/ForgotPassword'
 
 function AppContent() {
   const { darkMode, toggleDarkMode } = useCart()
@@ -21,12 +22,16 @@ function AppContent() {
   return (
     <div className={darkMode ? "dark-mode" : ""}>
       <Toaster position="top-right" />
-      <nav>
-        <div className="nav-brand">MyStore</div>
-        
+      
+        <nav>
+  <div className="nav-brand">MyStore</div>
+  {user && <span className="mobile-username">Hi, {user.name}</span>}
+ 
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
         </button>
+        
+        
 
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
@@ -59,6 +64,7 @@ function AppContent() {
         <Route path="/orders" element={<OrderHistory />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
 
       <ChatWidget />

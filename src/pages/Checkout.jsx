@@ -48,7 +48,7 @@ function Checkout() {
     total: grandTotal.toFixed(2)
   }
   
-    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/orders", {
+    fetch("https://ecommerce-backend-production-5790.up.railway.app/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(orderData)

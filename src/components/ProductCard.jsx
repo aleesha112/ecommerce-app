@@ -14,7 +14,9 @@ function ProductCard(props) {
       <button className="wishlist-btn" onClick={props.onToggleWishlist}>
         <span className={props.isWishlisted ? "heart filled" : "heart"}>♥</span>
       </button>
-      <img src={props.image} alt={props.name} className="product-img" />
+      {props.image && (
+        <img src={props.image} alt={props.name} className="product-img" />
+      )}
       <h3>{props.name}</h3>
       <div className="rating">{renderStars(props.rating)}</div>
       <p>${props.price}</p>

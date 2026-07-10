@@ -7,7 +7,7 @@ function OrderHistory() {
   const { token } = useAuth()
 
   useEffect(() => {
-    fetch("https://ecommerce-backend-production-a8b5.up.railway.app/api/orders", {
+    fetch("https://ecommerce-backend-production-5790.up.railway.app/api/orders", {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -71,4 +71,4 @@ function OrderHistory() {
   )
 }
 
-export default OrderHistory
+export default OrderHistory   

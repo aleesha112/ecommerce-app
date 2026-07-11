@@ -579,8 +579,29 @@ nav {
     grid-template-columns: 1fr;
   }
 
-  .cart-page,
   .checkout-page {
+    padding: 15px;
+  }
+
+  .checkout-form {
+    padding: 15px;
+  }
+
+  .checkout-form input,
+  .checkout-form select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .phone-group {
+    flex-direction: column;
+  }
+
+  .country-code-select {
+    width: 100%;
+  }
+
+  .cart-page {
     padding: 20px;
   }
 
@@ -628,6 +649,14 @@ nav {
 
   .auth-card {
     padding: 20px 15px;
+  }
+
+  .checkout-page {
+    padding: 10px;
+  }
+
+  .checkout-form {
+    padding: 12px;
   }
 }
 .chat-widget {
